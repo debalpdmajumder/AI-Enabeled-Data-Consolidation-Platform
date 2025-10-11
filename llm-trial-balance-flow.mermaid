@@ -1,0 +1,85 @@
+flowchart TD
+    Start([Start Process]) --> Input[📥 Input Preparation]
+    
+    Input --> InputFiles{Gather Files}
+    InputFiles --> TB[Trial Balance<br/>Excel File]
+    InputFiles --> ADJ[Adjustment Data<br/>Excel/CSV/Text]
+    
+    TB --> Format[🛠️ Format Validation]
+    ADJ --> Format
+    Format --> CheckFormat{Formatting<br/>Consistent?}
+    CheckFormat -->|No| FixFormat[Correct Format<br/>& Account Names]
+    FixFormat --> Format
+    CheckFormat -->|Yes| IdentifyAdj[Identify Adjustment Types:<br/>• Accruals<br/>• Prepayments<br/>• Depreciation<br/>• Provisions]
+    
+    IdentifyAdj --> Parse[🧠 Parsing & Understanding]
+    
+    Parse --> LLMRead[LLM Reads Both Files]
+    LLMRead --> Interpret[Interpret Natural Language<br/>Adjustment Descriptions]
+    Interpret --> Extract[Extract Structured Data<br/>from Unstructured Notes]
+    Extract --> MapAccounts[Map Adjustments to<br/>Correct Accounts]
+    MapAccounts --> ValidateNames{Account Names<br/>Valid?}
+    ValidateNames -->|No| Suggest[Suggest Corrections]
+    Suggest --> ValidateNames
+    ValidateNames -->|Yes| Logic[🧮 Adjustment Logic Application]
+    
+    Logic --> DoubleEntry[Apply Double-Entry Rules]
+    DoubleEntry --> DetermineImpact[Determine Debit/Credit Impact]
+    DetermineImpact --> HandleAdj[Handle Common Adjustments]
+    
+    HandleAdj --> Accrual[Accruals:<br/>Expense Dr / Liability Cr]
+    HandleAdj --> Prepay[Prepayments:<br/>Prepaid Dr / Expense Cr]
+    HandleAdj --> Deprec[Depreciation:<br/>Expense Dr / Accum Deprec Cr]
+    
+    Accrual --> GenJE[🧠 LLM Generates<br/>Journal Entries]
+    Prepay --> GenJE
+    Deprec --> GenJE
+    
+    GenJE --> ValidateJE{Entries<br/>Correct?}
+    ValidateJE -->|No| FixJE[Flag & Correct Issues]
+    FixJE --> GenJE
+    ValidateJE -->|Yes| Update[📊 Trial Balance Update]
+    
+    Update --> ApplyJE[Apply Journal Entries<br/>to Original TB]
+    ApplyJE --> CreateAdj[Create Adjusted<br/>Trial Balance]
+    CreateAdj --> CheckBalance{Debits =<br/>Credits?}
+    CheckBalance -->|No| FlagImbalance[🚨 Flag Imbalance<br/>or Missing Entries]
+    FlagImbalance --> FixImbalance[Resolve Issues]
+    FixImbalance --> CheckBalance
+    CheckBalance -->|Yes| Output[📁 Output Generation]
+    
+    Output --> GenAdjTB[Generate Adjusted TB<br/>Excel File]
+    Output --> GenJESummary[Generate Journal Entry<br/>Summary Sheet]
+    Output --> GenAudit[Generate Adjustment<br/>Audit Trail]
+    
+    GenAdjTB --> Format1[🧠 LLM Formats Output<br/>Professionally]
+    GenJESummary --> Format1
+    GenAudit --> Format1
+    
+    Format1 --> AddComments[Add Comments &<br/>Explanations]
+    
+    AddComments --> Enhance{Optional<br/>Enhancements?}
+    Enhance -->|Yes| Validation[✅ Validation Checks:<br/>• Materiality<br/>• Duplicates<br/>• Missing Accounts]
+    Enhance -->|Yes| Narrative[📝 Generate Narrative<br/>Summary]
+    Enhance -->|Yes| AuditSupport[📋 Create Audit<br/>Documentation]
+    
+    Validation --> Complete
+    Narrative --> Complete
+    AuditSupport --> Complete
+    Enhance -->|No| Complete
+    
+    Complete([✅ Process Complete])
+    
+    style Start fill:#e1f5e1
+    style Complete fill:#e1f5e1
+    style Input fill:#e3f2fd
+    style Parse fill:#fff3e0
+    style Logic fill:#fce4ec
+    style Update fill:#f3e5f5
+    style Output fill:#e0f2f1
+    style CheckBalance fill:#fff9c4
+    style ValidateJE fill:#fff9c4
+    style CheckFormat fill:#fff9c4
+    style ValidateNames fill:#fff9c4
+    style FlagImbalance fill:#ffebee
+    style Enhance fill:#f1f8e9
