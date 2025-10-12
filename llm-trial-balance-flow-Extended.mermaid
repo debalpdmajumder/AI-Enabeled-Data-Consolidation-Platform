@@ -1,0 +1,157 @@
+flowchart TD
+    Start([🚀 Start: Microsoft Copilot-Based<br/>Trial Balance Automation]) --> UserInt[👤 User Interface:<br/>Copilot Chat in Excel/Teams]
+    
+    UserInt --> Upload[📥 STEP 1: FILE UPLOAD VIA COPILOT]
+    Upload --> ExcelCopilot[Open Excel with Copilot]
+    ExcelCopilot --> UploadTB[Upload Trial Balance<br/>Excel File]
+    ExcelCopilot --> UploadAdj[Upload Adjustments<br/>Excel/CSV/Text]
+    
+    UploadTB --> Prompt1[💬 Copilot Prompt:<br/>'Analyze trial balance and<br/>identify account structure']
+    UploadAdj --> Prompt1
+    
+    Prompt1 --> CopilotRead[🤖 COPILOT PROCESSING]
+    CopilotRead --> M365Graph[Microsoft Graph API:<br/>Access file contents]
+    M365Graph --> AzureAI[Azure OpenAI Service:<br/>GPT-4 processing]
+    
+    AzureAI --> Parse[Parse & Understand:<br/>• Account names<br/>• Balances<br/>• Dr/Cr flags<br/>• Adjustment notes]
+    
+    Parse --> Prompt2[💬 User Prompt:<br/>'Read adjustment notes and<br/>suggest journal entries']
+    
+    Prompt2 --> NLU[Natural Language Understanding:<br/>Copilot interprets requests]
+    NLU --> ExtractIntent[Extract Intent:<br/>Accrual, Prepayment,<br/>Depreciation, etc.]
+    ExtractIntent --> SemanticIndex[Semantic Index:<br/>Map accounts using<br/>AI-powered search]
+    
+    style AzureAI fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style Parse fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style NLU fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style ExtractIntent fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style SemanticIndex fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    
+    SemanticIndex --> Validation{Copilot Asks:<br/>'Are these account<br/>mappings correct?'}
+    Validation -->|User: No| UserCorrect[User provides corrections<br/>via chat]
+    UserCorrect --> Learning[Copilot learns from<br/>user feedback]
+    Learning --> SemanticIndex
+    
+    style Learning fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    
+    Validation -->|User: Yes| GenJE[🤖 COPILOT GENERATES JE]
+    
+    GenJE --> Prompt3[💬 Copilot Action:<br/>'Generate journal entries<br/>following double-entry rules']
+    
+    Prompt3 --> PowerFX[Power Fx Expressions:<br/>Calculate Dr/Cr amounts]
+    PowerFX --> ExcelFormulas[Generate Excel Formulas:<br/>Auto-populate cells]
+    ExcelFormulas --> JETable[Create JE Table in Excel:<br/>• Date<br/>• Account<br/>• Debit<br/>• Credit<br/>• Description]
+    
+    JETable --> Preview[📊 Preview in Excel:<br/>Copilot highlights changes]
+    Preview --> SideBySide[Side-by-side view:<br/>Original vs Adjusted TB]
+    
+    SideBySide --> UserReview{👤 User Reviews:<br/>Approve changes?}
+    UserReview -->|Concerns| Chat[User asks Copilot:<br/>'Why did you debit X?']
+    Chat --> Explain[Copilot explains:<br/>Shows reasoning with<br/>accounting logic]
+    Explain --> Modify[User requests:<br/>'Modify entry for account Y']
+    Modify --> GenJE
+    
+    style Explain fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    
+    UserReview -->|Approved| Apply[✅ APPLY ADJUSTMENTS]
+    
+    Apply --> Prompt4[💬 Copilot Command:<br/>'Apply these journal entries<br/>to trial balance']
+    
+    Prompt4 --> PythonCopilot[Copilot in Excel:<br/>Python integration]
+    PythonCopilot --> DataManip[Data Manipulation:<br/>Update balances]
+    DataManip --> CreateSheet[Create new sheet:<br/>'Adjusted Trial Balance']
+    CreateSheet --> FormatTable[Format as Excel Table:<br/>Professional styling]
+    
+    FormatTable --> BalCheck[⚖️ BALANCE VERIFICATION]
+    BalCheck --> SumFormula[Copilot inserts:<br/>SUMIF formulas for Dr/Cr]
+    SumFormula --> Conditional[Conditional Formatting:<br/>Highlight if Dr ≠ Cr]
+    Conditional --> AutoCheck{Balanced?}
+    
+    AutoCheck -->|No| Alert[🚨 Copilot Alert:<br/>'Imbalance detected:<br/>Dr 500000 vs Cr 498500']
+    Alert --> Suggest[Copilot suggests:<br/>'Missing entry in<br/>Suspense Account?']
+    Suggest --> UserFix[User investigates & fixes]
+    UserFix --> BalCheck
+    
+    style Suggest fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    
+    AutoCheck -->|Yes| Reports[📑 GENERATE REPORTS]
+    
+    Reports --> Prompt5[💬 User Request:<br/>'Create summary report<br/>of all adjustments']
+    
+    Prompt5 --> CopilotStudio[Copilot Studio:<br/>Custom plugin execution]
+    CopilotStudio --> PowerBI[Power BI Integration:<br/>Create visualizations]
+    PowerBI --> WordReport[Word Copilot:<br/>Generate narrative report]
+    
+    WordReport --> ReportContent[Report Contents:<br/>• Executive summary<br/>• JE register<br/>• Variance analysis<br/>• Charts & graphs]
+    
+    ReportContent --> Prompt6[💬 User: 'Format this<br/>professionally for audit']
+    Prompt6 --> Template[Apply Word Template:<br/>Company branding]
+    Template --> TOC[Auto-generate:<br/>Table of Contents]
+    TOC --> PageNum[Add page numbers<br/>& headers]
+    
+    PageNum --> SharePoint[💾 SAVE TO SHAREPOINT]
+    SharePoint --> AutoSave[Auto-save with version control]
+    AutoSave --> MetaData[Copilot adds metadata:<br/>• Date<br/>• Preparer<br/>• Period]
+    MetaData --> Permissions[Set permissions:<br/>Share with controller]
+    
+    style MetaData fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    
+    Permissions --> Teams[📢 TEAMS NOTIFICATION]
+    Teams --> AdaptiveCard[Copilot sends Adaptive Card:<br/>'Trial Balance adjusted<br/>for March 2025']
+    AdaptiveCard --> ActionButtons[Action buttons:<br/>• Review<br/>• Approve<br/>• Comment]
+    
+    ActionButtons --> Approval{Controller<br/>Approves?}
+    Approval -->|Rejected| TeamsChat[Teams Chat:<br/>Discuss with accountant]
+    TeamsChat --> MeetingCopilot[Meeting Copilot:<br/>Schedule review call]
+    MeetingCopilot --> UserInt
+    
+    Approval -->|Approved| Finalize[✅ FINALIZATION]
+    
+    Finalize --> ERPExport[📤 Export to ERP:<br/>Generate import file]
+    ERPExport --> CSVFormat[CSV format per<br/>ERP requirements]
+    CSVFormat --> Prompt7[💬 Copilot: 'Validate<br/>export file format']
+    Prompt7 --> FormatCheck[Schema validation:<br/>Column mapping check]
+    
+    FormatCheck --> AuditTrail[📋 AUDIT TRAIL]
+    AuditTrail --> Viva[Viva Insights:<br/>Log activity]
+    Viva --> Purview[Microsoft Purview:<br/>Compliance tracking]
+    Purview --> AuditLog[Create audit log:<br/>• Who<br/>• What<br/>• When<br/>• Why]
+    
+    style FormatCheck fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style AuditLog fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    
+    AuditLog --> Archive[💾 ARCHIVE & RETENTION]
+    Archive --> OneDrive[Save to OneDrive:<br/>Long-term storage]
+    OneDrive --> Encrypt[Encrypt at rest:<br/>Microsoft security]
+    Encrypt --> Retention[Apply retention label:<br/>7-year policy]
+    
+    Retention --> Analytics[📊 CONTINUOUS IMPROVEMENT]
+    Analytics --> CopilotDash[Copilot Dashboard:<br/>Track usage metrics]
+    CopilotDash --> Metrics[Monitor:<br/>• Accuracy rate<br/>• Time saved<br/>• User satisfaction<br/>• Exception rate]
+    
+    Metrics --> Feedback[User feedback loop:<br/>Rate Copilot responses]
+    Feedback --> AITuning[Azure AI tuning:<br/>Improve prompts]
+    AITuning --> NextCycle[📅 Ready for next period]
+    
+    style AITuning fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    
+    NextCycle --> Complete([✅ Process Complete<br/>All Microsoft 365 Integrated])
+    
+    style Start fill:#0078d4,color:#fff
+    style Complete fill:#107c10,color:#fff
+    style UserInt fill:#e3f2fd
+    style CopilotRead fill:#fff3e0
+    style GenJE fill:#fce4ec
+    style BalCheck fill:#f3e5f5
+    style Reports fill:#e0f2f1
+    style SharePoint fill:#e8f5e9
+    style Teams fill:#f1f8e9
+    style Finalize fill:#fff9c4
+    style AuditTrail fill:#f3e5f5
+    style Archive fill:#e1f5fe
+    style Analytics fill:#f3e5f5
+    style Alert fill:#ffcdd2
+    style Validation fill:#fff59d
+    style UserReview fill:#fff59d
+    style AutoCheck fill:#fff59d
+    style Approval fill:#fff59d
