@@ -1,0 +1,56 @@
+✅ Step-by-Step Process
+Step 1: Understand the Reclassification File
+The file contains:
+
+GL Codes and Descriptions
+Amounts for different years (e.g., June'25, 2025, 2024, etc.)
+Some GL codes appear in pairs (e.g., one positive, one negative), indicating a reclassification from one account to another.
+
+These entries are not new transactions but reallocations of balances between accounts to better reflect their nature or classification.
+
+Step 2: Focus on the Relevant Period
+
+Use the "June'25" column for adjustments, as it aligns with the reporting period of the trial balance.
+Filter out rows where the June'25 value is zero or missing.
+
+
+Step 3: Identify Reclassification Pairs
+
+Group entries by S.No. or by matching positive and negative values in the same amount.
+For each pair:
+
+One GL code will have a debit (positive) amount.
+The other will have a credit (negative) amount.
+These should net to zero.
+
+
+
+
+Step 4: Apply Adjustments
+
+For each GL code:
+
+Add the June'25 amount to the existing balance in the trial balance.
+This will reclassify the amount from one account to another.
+
+
+
+
+Step 5: Update Trial Balance
+
+Add new columns:
+
+Reclassification Adjustment (June'25)
+Adjusted Balance
+Description:
+"Original Balance: X, Reclassification Adjustment: Y, Adjusted Balance: Z. Reason: Reclassified from/to [other GL Code]"
+
+
+
+
+Step 6: Save the Updated File
+
+Create a new Excel file with:
+
+Original Trial Balance
+Adjusted Trial Balance with the new columns
