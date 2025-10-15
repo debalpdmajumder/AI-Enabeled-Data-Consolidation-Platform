@@ -1,0 +1,53 @@
+✅ Step-by-Step Application Process
+Step 1: Understand the Adjustment File
+The cleaned file contains:
+
+Debit GL Code
+Credit GL Code
+Debit Amount
+Credit Amount
+Remarks
+
+Each row represents a journal entry with a debit and credit side, and the goal is to reflect these adjustments in the trial balance.
+
+Step 2: Normalize and Aggregate Adjustments
+
+Convert all GL codes to string format for consistent matching.
+For each GL code:
+
+Sum all debit amounts where it appears as a Debit GL Code.
+Sum all credit amounts where it appears as a Credit GL Code.
+Compute the net adjustment as:
+Net = Total Debit − Total Credit
+
+
+
+
+Step 3: Match with Trial Balance
+
+Match each GL code from the adjustment file with the "G/L Acct/BP Code" in the trial balance.
+For each matched GL code:
+
+Add the net adjustment to the existing balance in the trial balance.
+
+
+
+
+Step 4: Update Trial Balance
+
+Add the following columns:
+
+Audit Adjustment: Net adjustment amount
+Adjusted Balance: Original balance + adjustment
+Description:
+"Original Balance: X, Audit Adjustment: Y, Adjusted Balance: Z. Reason: [Remarks]"
+
+
+
+
+Step 5: Save the Updated File
+
+Create a new Excel file with:
+
+Original Trial Balance
+Adjusted Trial Balance with the new columns

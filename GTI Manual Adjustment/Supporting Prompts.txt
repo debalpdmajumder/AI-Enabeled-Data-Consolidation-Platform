@@ -1,0 +1,1 @@
+check this two files one is the unadjusted trial balance "Trial_Balance_Cleaned.xlsx" and other is the source of " Auditor suggested Adjustment". how will you apply this adjustment on Trial Balance , explain the steps. and show the list of GL Code for which a match was found in the source of adjustment file with non zero value.
