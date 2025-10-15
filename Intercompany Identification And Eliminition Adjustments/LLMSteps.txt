@@ -1,0 +1,62 @@
+✅ Step-by-Step Process
+Step 1: Understand the Intercompany File
+The file contains intercompany balances between related entities, including:
+
+GL Codes and Descriptions
+Dr/Cr amounts for each entity
+Net balances
+Entries to be taken (i.e., which GL accounts to adjust)
+Entity names and currencies
+Remarks or explanations
+
+These entries are meant to eliminate intercompany transactions that should not appear in consolidated financial statements.
+
+Step 2: Identify Relevant Entries
+
+Focus on rows where:
+
+There are non-zero net balances between entities.
+Entries are marked as “Entry to be taken” or have GL codes and Dr/Cr values.
+Ignore rows with “No Entry to be taken” or where differences are due to Exchange Differences (ED) unless specified otherwise.
+
+
+
+
+Step 3: Aggregate Adjustments
+
+For each GL Code, calculate the net adjustment:
+
+Sum all Dr and Cr values.
+Compute net effect (Dr − Cr).
+
+
+
+
+Step 4: Match with Trial Balance
+
+Match the GL Codes from the intercompany file with the "G/L Acct/BP Code" in the trial balance.
+For each matched GL Code:
+
+Add the net adjustment to the existing balance.
+
+
+
+
+Step 5: Update Trial Balance
+
+Add the following columns:
+
+Intercompany Adjustment: Net adjustment from intercompany file
+Adjusted Balance
+Description: Explanation like:
+"Original Balance: X, Intercompany Adjustment: Y, Adjusted Balance: Z. Reason: Intercompany elimination for [Entity/Transaction]"
+
+
+
+
+Step 6: Save the Updated File
+
+Create a new Excel file with:
+
+Original Trial Balance
+Adjusted Trial Balance with new columns

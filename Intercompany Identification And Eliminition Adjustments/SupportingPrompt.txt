@@ -1,0 +1,1 @@
+check this two files one is the unadjusted trial balance "Trial_Balance_Cleaned.xlsx" and other , "InterCompany.xlsx" is the source of "Intercompany Identification and Eliminition Adjustment". how will you apply this adjustment on Trial Balance , explain the steps.
