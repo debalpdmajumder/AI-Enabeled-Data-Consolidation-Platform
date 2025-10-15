@@ -1,0 +1,56 @@
+✅ Step-by-Step Application Process
+Step 1: Understand the Adjustment File
+The file contains adjustments across multiple quarters, with the relevant one for roll forward being:
+
+Apr'25 to Jun'25 (i.e., the current quarter being reported)
+
+Each row includes:
+
+GL Code: The account to adjust
+Particulars: Description of the transaction (e.g., Dr. Interest expense)
+Adjustment Amounts: For each quarter
+PL/BS: Indicates if the account is part of the Profit & Loss or Balance Sheet
+Remarks: Additional context
+
+
+Step 2: Filter for Relevant Period
+
+Focus only on the "Apr'25 to Jun'25" column.
+Extract rows where the adjustment amount is non-zero.
+
+
+Step 3: Aggregate Adjustments
+
+Group the data by GL Code.
+Sum the values in "Apr'25 to Jun'25" for each GL Code.
+This gives the net adjustment per GL account.
+
+
+Step 4: Match with Trial Balance
+
+Match each GL Code from the adjustment file with the "G/L Acct/BP Code" in the trial balance.
+For each matched GL Code:
+
+Add the net adjustment to the existing balance in the trial balance.
+
+
+
+
+Step 5: Update Trial Balance
+
+Add the following columns:
+
+Adjustment (Apr'25 to Jun'25): The net adjustment amount
+Adjusted Balance: Original balance + adjustment
+Description: A formulaic explanation like:
+"Original Balance: X, Adjustment: Y, Adjusted Balance: Z. Reason: [Remarks for June'25]"
+
+
+
+
+Step 6: Save the Updated File
+
+Create a new Excel file with:
+
+Original Trial Balance (for reference)
+Adjusted Trial Balance with the new columns
