@@ -1,0 +1,18 @@
+graph TD
+    A1[Unadjusted Trial<br/>Balance File] --> B[Match GL Code from<br/>Unadjusted TB Source<br/>File with GL Code from<br/>the Adjustment Source<br/>File]
+    A2[Trial balance<br/>Adjustment file<br/>Adjustment File] --> B
+    A3[Type of<br/>Adjustment to be<br/>done] --> B
+    
+    B --> C[Get Non-Zero<br/>Adjustment values from<br/>Adjustment source file<br/>for the matched GL<br/>Code]
+    
+    C --> D[Apply Adjustment on the<br/>Unadjusted trial balance<br/>File and create a new<br/>excel file]
+    
+    D --> E[New Excel File should have following<br/>Columns In it<br/>• GL Code<br/>• Name<br/>• Local Currency - Ringgit Malaysia -<br/>Balance-Before Adjustment<br/>• Column Name from Source with<br/>Adjustment Data<br/>• Adjusted Balance]
+    
+    style A1 fill:#f9f9f9,stroke:#333
+    style A2 fill:#f9f9f9,stroke:#333
+    style A3 fill:#f9f9f9,stroke:#333
+    style B fill:#e3f2fd,stroke:#333
+    style C fill:#e3f2fd,stroke:#333
+    style D fill:#e3f2fd,stroke:#333
+    style E fill:#fff3e0,stroke:#333

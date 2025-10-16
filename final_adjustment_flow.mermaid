@@ -1,0 +1,47 @@
+graph TD
+    A1["Individual Adjusted Trial<br/>Balance Excel File for:<br/>ENCICP"] --> B["Match GL Code from Unadjusted TB<br/>Source File with GL Code from each<br/>of the Individual Adjusted Trial<br/>Balance Excel File, in tab Adjusted<br/>Trial Balance"]
+    A2["Individual Adjusted Trial<br/>Balance Excel File for:<br/>MANA"] --> B
+    A3["Individual Adjusted Trial<br/>Balance Excel File for:<br/>ICIAEA"] --> B
+    A4["Individual Adjusted Trial<br/>Balance Excel File for:<br/>RCEA"] --> B
+    A5["Individual Adjusted Trial<br/>Balance Excel File for:<br/>RBK"] --> B
+    A6["Individual Adjusted Trial<br/>Balance Excel File for:<br/>RFWD"] --> B
+    A7["Unadjusted Trial<br/>Balance File"] --> B
+    
+    B --> C["Consolidate them in a new excel file"]
+    
+    C --> D["The consolidated entry in new excel<br/>file should look like"]
+    
+    D --> E["Column Headers:<br/>GL Code - Account Name - Balance Before Adjustment MYR -<br/>Net Adjustment-ENCICP - Net Adjustment-MANA -<br/>Net Adjustment-ICIAEA - Net Adjustment-RECA -<br/>Net Adjustment-RBK - Net Adjustment-RFWD -<br/>Adjusted Balance MYR"]
+    
+    E --> F1["GL Code<br/>This is the G/L Acct/BP Code<br/>from Unadjusted Trial Balance File"]
+    E --> F2["Name<br/>This is the Name<br/>from Unadjusted Trial Balance File"]
+    E --> F3["Balance Before Adjustment MYR<br/>This is the Local Currency - Ringgit Malaysia - Balance<br/>from Unadjusted Trial Balance File"]
+    E --> F4["Net Adjustment - ENCICP<br/>This is the Net Adjustment from the adjusted<br/>trial balance file for ENCPIC,<br/>in tab Adjusted Trial Balance"]
+    E --> F5["Net Adjustment-MANA<br/>This is the Net Adjustment from the adjusted<br/>trial balance file for MANA,<br/>in tab Adjusted Trial Balance"]
+    E --> F6["Net Adjustment-ICIAEA<br/>This is the Net Adjustment from the adjusted<br/>trial balance file for ICIAEA,<br/>in tab Adjusted Trial Balance"]
+    E --> F7["Net Adjustment-RECA<br/>This is the Net Adjustment from the adjusted<br/>trial balance file for RECA,<br/>in tab Adjusted Trial Balance"]
+    E --> F8["Net Adjustment-RBK<br/>This is the Net Adjustment from the adjusted<br/>trial balance file for RBK,<br/>in tab Adjusted Trial Balance"]
+    E --> F9["Net Adjustment-RFWD<br/>This is the Net Adjustment from the adjusted<br/>trial balance file for RBK,<br/>in tab Adjusted Trial Balance"]
+    E --> F10["Adjusted Balance MYR<br/>This is the sum of<br/>Balance Before Adjustment MYR + Net Adjustment - ENCICP +<br/>Net Adjustment-MANA + Net Adjustment-ICIAEA +<br/>Net Adjustment-RECA + Net Adjustment-RBK + Net Adjustment-RFWD"]
+    
+    style A1 fill:#f9f9f9,stroke:#333
+    style A2 fill:#f9f9f9,stroke:#333
+    style A3 fill:#f9f9f9,stroke:#333
+    style A4 fill:#f9f9f9,stroke:#333
+    style A5 fill:#f9f9f9,stroke:#333
+    style A6 fill:#f9f9f9,stroke:#333
+    style A7 fill:#f9f9f9,stroke:#333
+    style B fill:#e3f2fd,stroke:#333
+    style C fill:#e3f2fd,stroke:#333
+    style D fill:#e3f2fd,stroke:#333
+    style E fill:#fff3e0,stroke:#333
+    style F1 fill:#e8f5e9,stroke:#333
+    style F2 fill:#e8f5e9,stroke:#333
+    style F3 fill:#e8f5e9,stroke:#333
+    style F4 fill:#e8f5e9,stroke:#333
+    style F5 fill:#e8f5e9,stroke:#333
+    style F6 fill:#e8f5e9,stroke:#333
+    style F7 fill:#e8f5e9,stroke:#333
+    style F8 fill:#e8f5e9,stroke:#333
+    style F9 fill:#e8f5e9,stroke:#333
+    style F10 fill:#e8f5e9,stroke:#333
