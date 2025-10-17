@@ -1,0 +1,62 @@
+
+✅ Adjusted Trial Balance Generation Prompt
+Purpose:\ Generate an adjusted trial balance Excel file with detailed audit adjustments across multiple periods, formatted for financial reporting.
+
+
+🔧 Required Inputs
+
+Unadjusted Trial Balance File Name: "Trial_Balance.xlsx"\
+(e.g., Trial\_Balance.xlsx)
+
+Source Adjustment File Name: "AdjustmentEntries.xlsx"\
+(e.g., AdjustmentEntries.xlsx)
+
+Type of Adjustment: "Adjustment for entries not considered in the correct period"\
+(e.g., Audit adjustments, Reclassification, Accrual, Intercompany, FX, Tax)
+
+
+
+📋 Output Format
+The output Excel file will contain the following columns:
+
+Column	Description
+GL Code	General Ledger Code
+Account Name	Description of the GL Account
+Balance Before Adjustment (MYR)	Original balance from trial balance
+\[Adjustment Type] from Jan.22 to March 22	Period-specific adjustment
+\[Adjustment Type] from Jan.23 to March 23	Period-specific adjustment
+\[Adjustment Type] from Jan.24 to March 24	Period-specific adjustment
+Total Debit	Sum of positive adjustments
+Total Credit	Sum of negative adjustments
+Net Adjustment	Debit - Credit
+Adjusted Balance (MYR)	Final adjusted balance
+
+
+
+📄 Additional Features
+
+Second Sheet: Adjustment SummaryAdjustment Type
+Date Processed
+Total GL Codes Adjusted
+Net Adjustment Amount
+Unmatched GL Codes list
+Formatting:Thousand separators
+Rounded to 2 decimals
+Bold headers
+Filters and frozen top row
+
+
+📁 Output File Naming Convention
+
+Filename Format:\
+Adjusted_Trial_Balance_ENCICP_<YYYYMMDD_HHMMSS>.xlsx\    (e.g., Adjusted\_Trial\_Balance\_ENCICP\_20251016\_082117.xlsx)
+
+Uses current date and time stamp at the moment of file creation.
+
+
+📝 Prompt Example
+Generate adjusted trial balance using:
+- Unadjusted Trial Balance File: Trial_Balance.xlsx
+- Adjustment File: AdjustmentEntries.xlsx
+- Adjustment Type: Audit adjustments
+
