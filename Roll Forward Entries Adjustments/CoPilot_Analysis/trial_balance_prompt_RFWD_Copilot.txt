@@ -1,0 +1,61 @@
+
+✅ Adjusted Trial Balance Generation Prompt *(Updated for Rollforward Reconciliation)*
+
+Purpose:
+Generate an adjusted trial balance Excel file with detailed audit adjustments, including client-provided entries for January to March 2025, formatted for financial reporting and audit transparency. This version supports Rollforward Reconciliation, ensuring GAAP-compliant tracking of account movements across periods.
+
+🛠 Required Inputs
+- Unadjusted Trial Balance File Name: "Trial_Balance.xlsx"
+- Source Adjustment File Name: "AdjustmentEntries.xlsx"
+- Type of Adjustment: "Rollforward Reconciliation – GAAP-compliant tracking of account movements across periods for balance validation and audit transparency"
+
+🧠 Processing Logic Enhancements
+- GL Code Normalization:
+  All GL Codes from both files are converted to string format and stripped of whitespace to ensure accurate merging.
+
+- Column Indexing for Adjustments:
+  Adjustment entries are extracted using column names instead of column indices:
+  - Column 'GL Code': GL Code
+  - Column 'Jan'25 to Mar'25': Adjustment amount for Jan–Mar 2025
+
+- Data Cleaning:
+  Non-numeric adjustment values are coerced to NaN and dropped to avoid calculation errors.
+
+- Accurate Matching:
+  Adjustments are grouped by GL Code and summed before merging with the trial balance.
+  **Note:** Ensure the GL account description column is referenced as 'GL Code Description ' *(with trailing space)* to avoid KeyError during merging and when identifying unmatched GL Codes.
+
+📊 Output Format
+| Column | Description |
+|--------|-------------|
+| GL Code | General Ledger Code |
+| Account Name | Description of the GL Account |
+| Balance Before Adjustment (MYR) | Original balance from trial balance |
+| Debit | Sum of positive adjustments |
+| Credit | Sum of negative adjustments |
+| Net Adjustment | Debit - Credit |
+| New adjustments from Jan.25 to March 25 | Additional column for tracking new period adjustments |
+| Adjusted Balance (MYR) | Final adjusted balance after applying net adjustment |
+
+Example Row:
+11010000 | Trademark | 0 | 0 | 0 | 0 | 0 | 0
+
+📄 Additional Features
+Second Sheet: Adjustment Summary
+- Adjustment Type
+- Date Processed
+- Total GL Codes Adjusted
+- Net Adjustment Amount
+- Unmatched GL Codes list *(identified using 'GL Code Description ' column and converted to string before writing to Excel to avoid errors)*
+
+Formatting:
+- Thousand separators
+- Rounded to 2 decimals
+- Bold headers
+- Filters and frozen top row
+
+📁 Output File Naming Convention
+Filename Format:
+Adjusted_Trial_Balance_RFWD_<YYYYMMDD_HHMMSS>.xlsx
+(e.g., Adjusted_Trial_Balance_RFWD_20251015_174257.xlsx)
+Uses current date and time stamp at the moment of file creation.
