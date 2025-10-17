@@ -1,0 +1,71 @@
+
+✅ Adjusted Trial Balance Generation Prompt *(Updated for Audit Adjustment Entries – MANA Format)*
+
+🎯 Purpose:
+Generate an adjusted trial balance Excel file with detailed audit adjustment entries, including client-provided adjustments for March 2025. This version ensures GAAP-compliant corrections and audit transparency across fiscal years 22–23 and 23–24.
+
+---
+
+🛠️ Required Inputs:
+- Unadjusted Trial Balance File Name: "Trial_Balance.xlsx"
+- Source Adjustment File Name: "Audit Adjustment Entries.xlsx"
+- Type of Adjustment: "Audit Adjustments – GAAP-compliant corrections proposed by auditors to ensure financial statement accuracy and compliance"
+
+---
+
+🧠 Processing Logic Enhancements:
+- GL Code Normalization:
+  All GL Codes from both files are converted to string format and stripped of whitespace to ensure accurate merging.
+
+- Column Indexing for Adjustments:
+  Adjustment entries are extracted using column names:
+  - 'GL Code': General Ledger Code
+  - 'Dr': Debit amount
+  - 'Cr': Credit amount
+
+- Data Cleaning:
+  Non-numeric adjustment values are coerced to NaN and dropped to avoid calculation errors.
+
+- Accurate Matching:
+  Adjustments are grouped by GL Code and summed before merging with the trial balance.
+  Note: Ensure the GL account description column is referenced as 'GL Code Description ' *(with trailing space)* to avoid KeyError during merging and when identifying unmatched GL Codes.
+
+---
+
+📊 Output Format:
+| Column                          | Description                                                   |
+|----------------------------------|---------------------------------------------------------------|
+| GL Code                         | General Ledger Code                                           |
+| Account Name                    | Description of the GL Account                                 |
+| Balance Before Adjustment (MYR) | Original balance from trial balance                           |
+| Debit                           | Sum of positive adjustments                                   |
+| Credit                          | Sum of negative adjustments                                   |
+| Audit Adjustment Entries 22-23  | Adjustments from fiscal year 2022–2023                        |
+| Audit Adjustment Entries 23-24  | Adjustments from fiscal year 2023–2024                        |
+| Audit Adjustment Entries        | Combined audit adjustments                                    |
+| Net Adjustment                  | Debit − Credit                                                |
+| Adjusted Balance (MYR)          | Final adjusted balance after applying net adjustment          |
+
+---
+
+📄 Additional Features:
+Second Sheet: Adjustment Summary
+- Adjustment Type
+- Date Processed
+- Total GL Codes Adjusted
+- Net Adjustment Amount
+- Unmatched GL Codes list *(identified using 'GL Code Description ' column and converted to string before writing to Excel to avoid errors)*
+
+Formatting:
+- Thousand separators
+- Rounded to 2 decimals
+- Bold headers
+- Filters and frozen top row
+
+---
+
+📁 Output File Naming Convention:
+Filename Format:
+Adjusted_Trial_Balance_MANA_<YYYYMMDD_HHMMSS>.xlsx
+(e.g., Adjusted_Trial_Balance_MANA_20251015_181245.xlsx)
+Uses current date and time stamp at the moment of file creation.
