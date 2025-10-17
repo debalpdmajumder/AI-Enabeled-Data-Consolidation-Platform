@@ -1,0 +1,61 @@
+
+✅ Adjusted Trial Balance Generation Prompt *(Updated for Reclassification Entries)*
+
+Purpose:
+Generate an adjusted trial balance Excel file with detailed reclassification entries, including client-provided adjustments for March 2025, formatted for financial reporting and audit transparency. This version ensures GAAP-compliant correction of account classifications.
+
+🛠 Required Inputs
+- Unadjusted Trial Balance File Name: "Trial_Balance.xlsx"
+- Source Adjustment File Name: "Reclassification_Entry.xlsx"
+- Type of Adjustment: "Reclassification Entries – GAAP-compliant adjustments to correct account classification for accurate financial reporting"
+
+🧠 Processing Logic Enhancements
+- GL Code Normalization:
+  All GL Codes from both files are converted to string format and stripped of whitespace to ensure accurate merging.
+
+- Column Indexing for Adjustments:
+  Adjustment entries are extracted using column names:
+  - Column 'GL Code': GL Code
+  - Column "Mar'25": Reclassification amount for March 2025
+
+- Data Cleaning:
+  Non-numeric adjustment values are coerced to NaN and dropped to avoid calculation errors.
+
+- Accurate Matching:
+  Adjustments are grouped by GL Code and summed before merging with the trial balance.
+  **Note:** Ensure the GL account description column is referenced as 'GL Code Description ' *(with trailing space)* to avoid KeyError during merging and when identifying unmatched GL Codes.
+
+📊 Output Format
+| Column | Description |
+|--------|-------------|
+| GL Code | General Ledger Code |
+| Account Name | Description of the GL Account |
+| Balance Before Adjustment (MYR) | Original balance from trial balance |
+| Debit | Sum of positive adjustments |
+| Credit | Sum of negative adjustments |
+| Net Adjustment | Debit - Credit |
+| Reclass entries for Mar'25 | Reclassification entries for March 2025 |
+| Adjusted Balance (MYR) | Final adjusted balance after applying net adjustment |
+
+Example Row:
+11010000 | Trademark | 0 | 0 | 0 | 0 | 0 | 0
+
+📄 Additional Features
+Second Sheet: Adjustment Summary
+- Adjustment Type
+- Date Processed
+- Total GL Codes Adjusted
+- Net Adjustment Amount
+- Unmatched GL Codes list *(identified using 'GL Code Description ' column and converted to string before writing to Excel to avoid errors)*
+
+Formatting:
+- Thousand separators
+- Rounded to 2 decimals
+- Bold headers
+- Filters and frozen top row
+
+📁 Output File Naming Convention
+Filename Format:
+Adjusted_Trial_Balance_RCEA_<YYYYMMDD_HHMMSS>.xlsx
+(e.g., Adjusted_Trial_Balance_RCEA_20251015_170255.xlsx)
+Uses current date and time stamp at the moment of file creation.
