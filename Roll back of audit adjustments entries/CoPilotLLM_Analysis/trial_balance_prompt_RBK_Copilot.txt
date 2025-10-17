@@ -1,0 +1,57 @@
+
+✅ Adjusted Trial Balance Generation Prompt (Updated)
+
+Purpose:
+Generate an adjusted trial balance Excel file with detailed audit adjustments, including client-provided entries for April to December 2024, formatted for financial reporting. The logic ensures accurate GL Code matching by normalizing formats and using column indices where necessary.
+
+🔧 Required Inputs
+Unadjusted Trial Balance File Name: "Trial_Balance.xlsx"
+Source Adjustment File Name: "24_Adjustments.xlsx"
+Type of Adjustment: "Reversing Entries – GAAP-compliant rollback of prior audit adjustments for timing or presentation corrections"
+
+🧠 Processing Logic Enhancements
+- GL Code Normalization:
+  All GL Codes from both files are converted to string format and stripped of whitespace to ensure accurate merging.
+
+- Column Indexing for Adjustments:
+  Adjustment entries are extracted using column indices:
+  - Column 18: GL Code
+  - Column 16: Adjustment amount for Apr–Dec 2024
+
+- Data Cleaning:
+  Non-numeric adjustment values are coerced to NaN and dropped to avoid calculation errors.
+
+- Accurate Matching:
+  Adjustments are grouped by GL Code and summed before merging with the trial balance.
+  Note: Ensure the GL account description column is referenced as 'GL Code Description ' (with trailing space) to avoid KeyError during merging.
+
+📋 Output Format
+Column	Description
+GL Code	General Ledger Code
+Account Name	Description of the GL Account
+Balance Before Adjustment (MYR)	Original balance from trial balance
+Audit adjustments by client from Apr to Dec'24	Client-provided adjustments for Apr–Dec 2024
+Debit	Sum of positive adjustments
+Credit	Sum of negative adjustments
+Net Adjustment	Debit - Credit
+Adjusted Balance (MYR)	Final adjusted balance after applying net adjustment
+
+📄 Additional Features
+Second Sheet: Adjustment Summary
+- Adjustment Type
+- Date Processed
+- Total GL Codes Adjusted
+- Net Adjustment Amount
+- Unmatched GL Codes list
+
+Formatting:
+- Thousand separators
+- Rounded to 2 decimals
+- Bold headers
+- Filters and frozen top row
+
+📁 Output File Naming Convention
+Filename Format:
+Adjusted_Trial_Balance_RBK_<YYYYMMDD_HHMMSS>.xlsx
+(e.g., Adjusted_Trial_Balance_RBK_20251016_090718.xlsx)
+Uses current date and time stamp at the moment of file creation.
