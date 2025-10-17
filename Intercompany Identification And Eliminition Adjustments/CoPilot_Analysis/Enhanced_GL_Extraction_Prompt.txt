@@ -1,0 +1,29 @@
+### Enhanced Prompt: Extract GL Data from Excel File
+
+I have an Excel file named **"InterCompany.xlsx"** containing intercompany transactions. I want to extract all rows that contain:
+
+- **GL Code** (8-digit numeric values)
+- **GL Description**
+- **Dr**
+- **Cr**
+- **Net**
+
+These columns may appear multiple times and may not be aligned consistently. Please:
+
+1. Load the file **"InterCompany.xlsx"** and scan all sheets.
+2. Search each row for cells that resemble a **GL Code** (8-digit numeric).
+3. When a GL Code is found, dynamically search within a window of **±10 columns** around the GL Code cell to locate:
+   - GL Description (preferably a nearby string value)
+   - Dr (first numeric value found after GL Code)
+   - Cr (next numeric value after Dr)
+   - Net (next numeric value after Cr)
+4. Use robust error handling to skip rows with missing or invalid data.
+5. Compile all extracted rows into a structured dataset with columns:
+   - GL Code
+   - GL Description
+   - Dr
+   - Cr
+   - Net
+6. Export the result to a new Excel file named **"InterCompanyExtract.xlsx"**.
+
+The goal is to **maximize the number of valid GL entries** extracted, even if the layout is inconsistent.
